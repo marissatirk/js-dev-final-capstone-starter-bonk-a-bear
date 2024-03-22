@@ -42,6 +42,12 @@ function randomInteger(min, max) {
  */
 function setDelay(difficulty) {
   // TODO: Write your code here.
+  if (difficulty === "easy") {
+    return 1500;
+} else if (difficulty === "normal") {
+  return 1000;
+} else {
+  return randomInteger(600, 1200);
 }
 
 /**
@@ -110,7 +116,7 @@ function gameOver() {
 *
 */
 function showUp() {
-  let delay = setDelay("hard"); // TODO: Update so that it uses setDelay()
+  let delay = setDelay(difficulty); // TODO: Update so that it uses setDelay()
   const hole = chooseHole(holes);  // TODO: Update so that it use chooseHole()
   return showAndHide(hole, delay);
 }
@@ -159,6 +165,7 @@ function toggleVisibility(hole){
 function updateScore() {
   // TODO: Write your code here
   points++;
+  score.textContent = points;
   return points;
 }
 
@@ -171,8 +178,8 @@ function updateScore() {
 */
 function clearScore() {
   // TODO: Write your code here
-  // points = 0;
-  // score.textContent = points;
+   points = 0;
+   score.textContent = points;
   return points;
 }
 
@@ -252,6 +259,7 @@ function setDuration(duration) {
 function stopGame(){
   // stopAudio(song);  //optional
   clearInterval(timer);
+  time = 20;
   return "game stopped";
 }
 
