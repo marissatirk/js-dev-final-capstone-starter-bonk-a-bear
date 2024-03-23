@@ -22,7 +22,7 @@ let difficulty = "hard";
  */
 function randomInteger(min, max) {
   // return Math.floor(Math.random() * (max - min + 1)) + min;
-  return.Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /**
@@ -48,8 +48,8 @@ function setDelay(difficulty) {
   return 1000;
 } else {
   return randomInteger(600, 1200);
+  }
 }
-
 /**
  * Chooses a random hole from a list of holes.
  *
