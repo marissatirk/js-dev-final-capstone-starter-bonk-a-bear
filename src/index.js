@@ -2,10 +2,10 @@ const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 // TODO: Add the missing query selectors:
-const score = document.querySelectorAll('.score') // Use querySelector() to get the score element
-const timerDisplay = document.querySelectorAll('.timer') // use querySelector() to get the timer element.
+const score = document.querySelector('#score') // Use querySelector() to get the score element
+const timerDisplay = document.querySelector('#timer') // use querySelector() to get the timer element.
 
-let time = 0;
+let time = 10;
 let timer;
 let lastHole = 0;
 let points = 0;
@@ -164,7 +164,7 @@ function toggleVisibility(hole){
 */
 function updateScore() {
   // TODO: Write your code here
-  points;
+  points ++;
   score.textContent = points;
   return points;
 }
@@ -272,10 +272,16 @@ function stopGame(){
 function startGame(){
   setDuration(10);
   showUp();
+  clearScore();
+	setEventListeners();
+	startTimer();
   return "game started";
+
 }
 
 startButton.addEventListener("click", startGame);
+
+
 
 
 // Please do not modify the code below.
