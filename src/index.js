@@ -42,10 +42,15 @@ function randomInteger(min, max) {
  */
 function setDelay(difficulty) {
   // TODO: Write your code here.
+  /**set easy difficulty to 1500 */
   if (difficulty === "easy") {
     return 1500;
+/**set normal difficulty to 1000 */
 } else if (difficulty === "normal") {
   return 1000;
+/**set hard to amount between 600-1200
+ * 
+ */
 } else {
   return randomInteger(600, 1200);
   }
@@ -66,8 +71,10 @@ function setDelay(difficulty) {
  */
 function chooseHole(holes) {
   // TODO: Write your code here.
+  /**select integer between 0-8 to represent the 9 holes */
   const index = randomInteger(0, 8);
   const hole = holes[index];
+  /** check to see if the hole is the same as the last hole if so chooseHole() will be ran again */
   if (hole === lastHole) {
     return chooseHole(holes);
   }
@@ -97,9 +104,11 @@ function chooseHole(holes) {
 */
 function gameOver() {
   // TODO: Write your code here
+  /** If there is still time left call showUp() */
   if (time > 0){
     let timeoutId = showUp();
     return timeoutId;
+  /**If there is no time remaining call stopGame() */
   } else {
     let gameStopped = stopGame();
     return gameStopped;
@@ -116,8 +125,11 @@ function gameOver() {
 *
 */
 function showUp() {
+  /**set delay based on difficulty by calling setDelay() */
   let delay = setDelay(difficulty); // TODO: Update so that it uses setDelay()
+  /**call chooseHole()*/
   const hole = chooseHole(holes);  // TODO: Update so that it use chooseHole()
+  /**call showAndHide() that takes in parameters hole and delay */
   return showAndHide(hole, delay);
 }
 
@@ -147,8 +159,8 @@ function showAndHide(hole, delay){
 *
 */
 function toggleVisibility(hole){
+  /** add hole.classList.toggle so that it adds or removes the 'show' class.*/ 
   hole.classList.toggle("show")
-  // TODO: add hole.classList.toggle so that it adds or removes the 'show' class.
   return hole;
 }
 
@@ -163,7 +175,7 @@ function toggleVisibility(hole){
 *
 */
 function updateScore() {
-  // TODO: Write your code here
+  /** increment score by one */
   points ++;
   score.textContent = points;
   return points;
@@ -177,7 +189,7 @@ function updateScore() {
 *
 */
 function clearScore() {
-  // TODO: Write your code here
+  /** clear score to zero */
    points = 0;
    score.textContent = points;
   return points;
@@ -191,6 +203,7 @@ function clearScore() {
 function updateTimer() {
   // TODO: Write your code here.
   // hint: this code is provided to you in the instructions.
+  /** if timer is more than 0 decrease by 1*/
   if (time > 0){
     time -= 1;
     timerDisplay.textContent = time;
@@ -207,6 +220,7 @@ function updateTimer() {
 function startTimer() {
   // TODO: Write your code here
   // timer = setInterval(updateTimer, 1000);
+  /**set timer to correct time of 10 secconds */
   timer = setInterval(updateTimer, 1000);
   return timer;
 }
@@ -221,7 +235,7 @@ function startTimer() {
 */
 function whack(event) {
   // TODO: Write your code here.
-  // call updateScore()
+  /**call updateScore()*/
   updateScore()
   return points;
 }
@@ -233,6 +247,7 @@ function whack(event) {
 */
 function setEventListeners(){
   // TODO: Write your code here
+  /** add click event to eventListener*/
   moles.forEach(
     mole => mole.addEventListener('click', whack)
   );
@@ -259,7 +274,7 @@ function setDuration(duration) {
 function stopGame(){
   // stopAudio(song);  //optional
   clearInterval(timer);
-  time = 20;
+  time = 10;
   return "game stopped";
 }
 
@@ -270,6 +285,7 @@ function stopGame(){
 *
 */
 function startGame(){
+  /** caLL setDuration, showUp(), clearScore(), setEventListeners, and startGame() to start the game */
   setDuration(10);
   showUp();
   clearScore();
